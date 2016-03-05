@@ -3,8 +3,13 @@
 		[clojure.java.io :as io])
   (:gen-class))
 
+; general functions
+
 (defn read-file [filepath]
 	(str/split (slurp filepath) #"\n"))
+
+
+; weather functions
 
 (defn parse-weather-line [line]
 	(zipmap [:day :min :max]
@@ -21,6 +26,11 @@
 			data)))
 	:day))
 
+; main weather function
+; (defn -main [& args] (println (filter-for-closest-temperature (filtermap-weather-data (read-file "/Users/fp/code/data-munging-kata/weather.dat")))))
+
+; football functions
+
 (defn extract-values [file]
 		(let [data (filter #(= 9 (count %)) (map (fn [line] (next (str/split line #"(\-+)|(\s+\-\s+)|(\.\s+)|(\s+)"))) file))]
 	    	(println
@@ -32,8 +42,11 @@
 			     			 		:goalsagainst (first (drop 7 line))})
 			     			 	) data))) ) :team))))
 
+; main football function
 (defn -main [& args] (extract-values (read-file "/Users/fp/code/data-munging-kata/football.dat")))
 
+
+; football minimal solution
 ; (defn extract-values []
 ; 	(with-open [rdr (io/reader "/Users/fp/code/data-munging-kata/football.dat")]
 ; 		(let [data
@@ -48,6 +61,7 @@
 ; 		     			 	) data))) ) :team)))))
 
 
+; weather minimal solution
 ; (defn extract-values []
 ; 	(with-open [rdr (io/reader "/Users/fp/code/data-munging-kata/weather.dat")]
 ;     	(println
