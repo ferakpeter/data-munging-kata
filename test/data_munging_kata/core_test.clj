@@ -5,6 +5,6 @@
 (deftest add-value-test
   (testing "Add value to a tree structure"
     (is 
-    	(= 
-    		(data-munging-kata.core/<main-function "Sofia") 
-    		"female"))))
+        (= 
+            (data-munging-kata.core/<main-function "Sofia") 
+            "female"))))
