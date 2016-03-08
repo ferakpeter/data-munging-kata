@@ -2,9 +2,16 @@
   (:require [clojure.test :refer :all]
             [data-munging-kata.core :refer :all]))
 
-(deftest add-value-test
-  (testing "Add value to a tree structure"
-    (is 
-        (= 
-            (data-munging-kata.core/<main-function "Sofia") 
-            "female"))))
+; baseball tests
+(deftest add-win-difference-test
+  (testing "Calculation of the win-loss difference"
+    (is
+        (=
+            (add-win-difference {:team "Testing Munchkins" :wins "2" :losses "0"})
+            {:team "Testing Munchkins" :wins "2" :losses "0" :diff 2}))))
+
+(deftest add-win-difference-invalid-input-test
+  (testing "Calculation of the win-loss difference with invalid input"
+    (is
+        (nil?
+            (add-win-difference {:losses "0"})))))
