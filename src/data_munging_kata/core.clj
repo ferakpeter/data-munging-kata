@@ -1,6 +1,10 @@
 (ns data-munging-kata.core
     (:require [clojure.string :as str]
-        [clojure.java.io :as io])
+        [clojure.java.io :as io]
+        [clojure.zip :as zip]
+        [clojure.data.zip.xml :as zx]
+        [clojure.data.xml :as xml]
+        [pl.danieljanus.tagsoup :as html])
   (:gen-class))
 
 ; shared logic
@@ -48,7 +52,7 @@
 ; (defn -main [& args]
 ;   (println
 ;       (find-smallest-difference
-;           (read-file "/Users/fp/code/data-munging-kata/weather.dat")
+;           (read-file "weather.dat")
 ;           extract-weather-data
 ;           parse-weather-line
 ;           add-temperature-difference
@@ -80,7 +84,7 @@
 ; (defn -main [& args]
 ;   (println
 ;       (find-smallest-difference
-;           (read-file "/Users/fp/code/data-munging-kata/football.dat")
+;           (read-file "football.dat")
 ;           extract-football-data
 ;           parse-football-line
 ;           add-goals-difference
@@ -107,7 +111,7 @@
 (defn -main [& args]
     (println
         (find-biggest-difference
-            (read-file "/Users/fp/code/data-munging-kata/baseball.dat")
+            (read-file "baseball.dat")
             extract-baseball-data
             parse-baseball-line
             add-win-difference
@@ -115,7 +119,7 @@
 
 ; football minimal solution
 ; (defn find-smallest-difference []
-;   (with-open [rdr (io/reader "/Users/fp/code/data-munging-kata/football.dat")]
+;   (with-open [rdr (io/reader "football.dat")]
 ;       (let [data
 ;           (filter #(= 9 (count %)) (map (fn [line] (next (str/split line #"(\-+)|(\s+\-\s+)|(\.\s+)|(\s+)"))) (line-seq rdr)))]
 ;       (println
@@ -130,7 +134,7 @@
 
 ; weather minimal solution
 ; (defn find-smallest-difference []
-;   (with-open [rdr (io/reader "/Users/fp/code/data-munging-kata/weather.dat")]
+;   (with-open [rdr (io/reader "weather.dat")]
 ;       (println
 ;            ((first (sort-by :diff
 ;                   (map #(into % {:diff (- (read-string (% :min)) (read-string (% :max)))})
