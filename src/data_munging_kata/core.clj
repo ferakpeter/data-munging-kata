@@ -1,10 +1,6 @@
 (ns data-munging-kata.core
     (:require [clojure.string :as str]
-        [clojure.java.io :as io]
-        [clojure.zip :as zip]
-        [clojure.data.zip.xml :as zx]
-        [clojure.data.xml :as xml]
-        [pl.danieljanus.tagsoup :as html])
+        [clojure.java.io :as io])
   (:gen-class))
 
 ; shared logic
